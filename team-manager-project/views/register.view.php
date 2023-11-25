@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-    Hi
-</body>
-</html>
+<?php require 'partials/header.php'; ?>
+
+<h3 class="">سلام خوش آمدید</h3>
+<button class="btn btn-primary">صییییک تیر!</button>
+
+<script>
+  $("button").click(() => {
+    $("h3").text("صیک تیر عاموجون!")
+  })
+</script>

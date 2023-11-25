@@ -1,0 +1,24 @@
+@font-face {
+  font-family: vazirmatn;
+  src: url("/views/fonts/Vazirmatn-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: vazirmatn;
+  src: url("/views/fonts/Vazirmatn-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: vazirmatn;
+  src: url("/views/fonts/Vazirmatn-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
+* {
+  font-family: "vazirmatn" !important;
+}
