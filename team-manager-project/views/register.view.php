@@ -1,6 +1,6 @@
 <?php require 'partials/header.php'; ?>
 
-<div class="col-sm-6 col-4 col-9 px-4 py-5 bg-light mx-auto my-auto mt-5 border">
+<div class="col-sm-4 col-9 px-4 py-5 bg-light mx-auto my-auto mt-5 border">
   <h2 class="fw-bold text-center mb-4">ثبت نام</h2>
 
   <?php if (count($errors)) : ?>
@@ -81,6 +81,5 @@
       />
     </div>
     <button id="registerBtn" type="submit" class="btn btn-primary w-100">ثبت نام</button>
-    <div id="results"></div>
   </form>
 </div>

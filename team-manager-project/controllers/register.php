@@ -2,11 +2,13 @@
 $config = require('config.php');
 require 'Auth.php';
 
+if (isset($_SESSION['user'])) {
+  header("Location: /");
+  exit();
+}
+
 $errors = [];
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  session_start();
-
   $first_name = $_POST['firstName'];
   $last_name = $_POST['lastName'];
   $email = $_POST['email'];
