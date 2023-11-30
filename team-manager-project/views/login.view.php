@@ -1,6 +1,6 @@
 <?php require 'partials/header.php'; ?>
 
-<div class="col-sm-3 col-9 px-4 pt-4 bg-light mx-auto my-auto mt-5 border">
+<div class="col-lg-4 col-sm-6 col-9 px-4 pt-4 bg-light mx-auto my-auto mt-5 border">
   <h2 class="fw-bold text-center mb-4">ورود</h2>
 
   <?php if (count($errors)) : ?>
