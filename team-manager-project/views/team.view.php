@@ -17,6 +17,41 @@
   </div>
   <hr class="mt-3" />
   <h4>لیست بازیکنان</h4>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="text-center">
+        <th>نام</th>
+        <th>نام خانوادگی</th>
+        <th>عملیات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach($players as $player) : ?>
+        <tr class="text-center align-middle">
+          <td><?= $player['first_name'] ?></td>
+          <td><?= $player['last_name'] ?></td>
+          <td>
+            <form action="delete-player?playerId=<?= $player['id'] ?>" method="POST">
+              <button class="btn btn-danger btn-sm">حذف</button>
+            </form>
+          </td>
+        </tr>
+      <?php endforeach; ?>
+      <tr class="text-center">
+        <form action="create-player?teamId=<?= $team_id ?>" method="POST">
+          <td>
+            <input name="firstName" class="form-control text-center" type="text" required />
+          </td>
+          <td>
+            <input name="lastName" class="form-control text-center" type="text" required />
+          </td>
+          <td>
+            <button class="btn btn-primary">افزودن</button>
+          </td>
+        </form>
+      </tr>
+    </tbody>
+  </table>
 </main>
 
 <script>
