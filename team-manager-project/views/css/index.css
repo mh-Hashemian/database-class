@@ -44,3 +44,14 @@ ul {
 .dropdown-menu {
   left: 0;
 }
+
+.add-card {
+  border: 2px dashed #d1d5db;
+}
+
+.link-unstyled,
+.link-unstyled:link,
+.link-unstyled:hover {
+  color: inherit;
+  text-decoration: inherit;
+}

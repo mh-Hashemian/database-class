@@ -1,7 +1,7 @@
 <?php require 'header.php'; ?>
 
 <header class="bg-white container rounded-3 mt-3 py-3 px-4 d-flex align-items-center justify-content-between">
-  <h2>مدیریت سانس</h2>
+  <a class="link-unstyled" href="/"><h2>مدیریت سانس</h2></a>
   <nav>
 
   </nav>
