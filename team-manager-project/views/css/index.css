@@ -22,3 +22,15 @@
 * {
   font-family: "vazirmatn" !important;
 }
+
+body {
+  background-color: #e5e7eb;
+}
+
+.form {
+  max-width: 350px;
+}
+
+ul {
+  margin-bottom: 0;
+}
