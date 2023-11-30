@@ -5,6 +5,4 @@ if (!isset($_SESSION['user'])) {
   exit();
 }
 
-var_dump($_SESSION['user']);
-
 require 'views/index.view.php';
