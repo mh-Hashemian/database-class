@@ -3,9 +3,33 @@
 
 <main class="container mt-3">
 
-  <div id="addTeam" data-bs-toggle="modal" data-bs-target="#exampleModal" class="add-card text-secondary col-3 p-4 text-center" style="cursor: pointer;">
-    <img class="" width="48" src="views/images/plus.svg" alt="افزودن">
-    <p >افزودن تیم</p>
+  <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
+    <div class="p-1">
+      <div 
+        id="addTeam" 
+        data-bs-toggle="modal" 
+        data-bs-target="#exampleModal" 
+        class="add-card h-100 text-secondary p-4 text-center d-flex flex-column justify-content-center align-items-center" 
+        style="cursor: pointer;"
+      >
+        
+        <img class="" width="48" src="views/images/plus.svg" alt="افزودن">
+        <p >افزودن تیم</p>
+      </div>
+    </div>
+  
+    <!-- display teams -->
+    <?php foreach($teams as $team): ?>
+      <div class="p-1">
+        <div class="card px-0">
+          <h5 class="card-header">تعداد بازیکنان: <?= $team['players_count'] ?></h5>
+          <div class="card-body">
+            <h5 class="card-title"><?= $team['name'] ?></h5>
+            <a href="/team?id=<?= $team['id'] ?>" class="btn btn-primary mt-3 w-100">جزئیات</a>
+          </div>
+        </div>
+      </div>
+    <?php endforeach; ?>
   </div>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
