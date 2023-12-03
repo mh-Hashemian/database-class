@@ -20,6 +20,7 @@
   <table class="table table-bordered">
     <thead>
       <tr class="text-center">
+        <th>شناسه</th>
         <th>نام</th>
         <th>نام خانوادگی</th>
         <th>عملیات</th>
@@ -28,17 +29,22 @@
     <tbody>
       <?php foreach($players as $player) : ?>
         <tr class="text-center align-middle">
+          <td><b><?= $player['id'] ?></b></td>
           <td><?= $player['first_name'] ?></td>
           <td><?= $player['last_name'] ?></td>
-          <td>
-            <form action="delete-player?playerId=<?= $player['id'] ?>" method="POST">
-              <button class="btn btn-danger btn-sm">حذف</button>
+          <td class="">
+            <a class="btn btn-success btn-sm" href="/player?id=<?= $player['id']?>">گزارشات</a>
+            <form class="d-inline-block" action="delete-player?teamId=<?= $team['id'] ?>&playerId=<?= $player['id'] ?>" method="POST">
+              <button type="submit" class="btn btn-danger btn-sm">حذف</button>
             </form>
           </td>
         </tr>
       <?php endforeach; ?>
-      <tr class="text-center">
+      <tr class="text-center align-middle">
         <form action="create-player?teamId=<?= $team_id ?>" method="POST">
+          <td>
+            <b>#</b>
+          </td>
           <td>
             <input name="firstName" class="form-control text-center" type="text" required />
           </td>

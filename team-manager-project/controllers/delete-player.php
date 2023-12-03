@@ -1,6 +1,7 @@
 <?php
 $config = require("config.php");
 
+$team_id = $_GET['teamId'];
 $player_id = $_GET['playerId'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $db = new Database($config['database']);
@@ -13,5 +14,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $statement->bindParam('player_id', $player_id);
   $statement->execute();
 
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  header('Location: team?id=' . $team_id);
 }

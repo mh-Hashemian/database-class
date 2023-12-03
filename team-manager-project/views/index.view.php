@@ -22,7 +22,7 @@
     <?php foreach($teams as $team): ?>
       <div class="p-1">
         <div class="card px-0">
-          <h5 class="card-header">تعداد بازیکنان: <?= $team['players_count'] ?></h5>
+          <h5 class="card-header h6">تعداد بازیکنان: <?= $team['players_count'] ?></h5>
           <div class="card-body">
             <h5 class="card-title"><?= $team['name'] ?></h5>
             <a href="/team?id=<?= $team['id'] ?>" class="btn btn-primary mt-3 w-100">جزئیات</a>
