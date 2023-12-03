@@ -1,7 +1,7 @@
 <?php require("partials/header.php") ?>
 <?php require("partials/nav.php") ?>
 
-<main class="container mt-3 bg-white rounded rounded-3 p-5">
+<main class="container mt-3 bg-white rounded rounded-3 p-sm-5 py-4 px-2">
   <table class="table table-bordered">
     <thead>
       <tr class="text-center">
@@ -31,10 +31,12 @@
             />
           </td>
           <td class="">
-            <button id="editBtn" disabled type="submit" class="btn btn-success btn-sm">ویرایش</button>
-            <form class="d-inline-block" action="delete-player?teamId=<?= $player['team_id'] ?>&playerId=<?= $player['id'] ?>" method="POST">
-              <button class="btn btn-danger btn-sm">حذف</button>
-            </form>
+            <div class="d-flex flex-lg-row flex-column gap-1">
+              <button id="editBtn" disabled type="submit" class="btn btn-success btn-sm w-100">ویرایش</button>
+              <form class="d-inline-block w-100" action="delete-player?teamId=<?= $player['team_id'] ?>&playerId=<?= $player['id'] ?>" method="POST">
+                <button class="btn btn-danger btn-sm w-100">حذف</button>
+              </form>
+            </div>
           </td>
         </tr>
     </tbody>
