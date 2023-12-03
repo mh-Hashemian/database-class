@@ -45,10 +45,10 @@
               <td><b><?= $player['id'] ?></b></td>
               <td><?= $player['first_name'] ?></td>
               <td><?= $player['last_name'] ?></td>
-              <td>
-                <div class="d-flex flex-lg-row flex-column gap-1">
+              <td class="align-middle">
+                <div class="d-flex flex-lg-row flex-column gap-1 align-middle h-100">
                   <a class="btn btn-success btn-sm w-100" href="/player?id=<?= $player['id']?>">گزارشات</a>
-                  <form class="d-inline-block w-100" action="delete-player?teamId=<?= $team['id'] ?>&playerId=<?= $player['id'] ?>" method="POST">
+                  <form class="d-inline-block mb-0 w-100" action="delete-player?teamId=<?= $team['id'] ?>&playerId=<?= $player['id'] ?>" method="POST">
                     <button type="submit" class="btn btn-danger btn-sm w-100">حذف</button>
                   </form>
                 </div>
@@ -76,7 +76,37 @@
     </div>
 
     <div class="tab-pane fade" id="sessions" role="tabpanel" aria-labelledby="sessions-tab">
+      <h4>لیست جلسات</h4>
 
+      <table class="table table-bordered">
+        <thead>
+          <tr class="text-center">
+            <th>شناسه</th>
+            <th>عنوان</th>
+            <th>تاریخ</th>
+            <th>عملیات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach($sessions as $session) : ?>
+            <tr class="text-center align-middle">
+              <td><b><?= $session['id'] ?></b></td>
+              <td><?= $session['title'] ?></td>
+              <td>
+                <b><?= $formatter->format(date_create($session['date'])) ?></b>
+              </td>
+              <td>
+                <div class="d-flex flex-lg-row flex-column gap-1">
+                  <a class="btn btn-success btn-sm w-100" href="/session?id=<?= $player['id']?>">گزارشات</a>
+                  <form class="d-inline-block mb-0 w-100" action="delete-player?teamId=<?= $team['id'] ?>&playerId=<?= $player['id'] ?>" method="POST">
+                    <button type="submit" class="btn btn-danger btn-sm w-100">حذف</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
     </div>
     <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> -->
   </div>

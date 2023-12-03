@@ -33,7 +33,7 @@
           <td class="">
             <div class="d-flex flex-lg-row flex-column gap-1">
               <button id="editBtn" disabled type="submit" class="btn btn-success btn-sm w-100">ویرایش</button>
-              <form class="d-inline-block w-100" action="delete-player?teamId=<?= $player['team_id'] ?>&playerId=<?= $player['id'] ?>" method="POST">
+              <form class="d-inline-block mb-0 w-100" action="delete-player?teamId=<?= $player['team_id'] ?>&playerId=<?= $player['id'] ?>" method="POST">
                 <button class="btn btn-danger btn-sm w-100">حذف</button>
               </form>
             </div>

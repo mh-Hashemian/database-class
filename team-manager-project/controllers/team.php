@@ -19,4 +19,19 @@ $statement->execute();
 
 $players = $statement->fetchAll();
 
+$formatter = new IntlDateFormatter(
+  "fa_IR@calendar=persian",
+  IntlDateFormatter::FULL,
+  IntlDateFormatter::FULL,
+  'Asia/Tehran',
+  IntlDateFormatter::TRADITIONAL,
+  "yyyy/MM/dd");
+
+$sessionsQuery = "SELECT * FROM sessions WHERE team_id = :team_id";
+$statement = $db->connection->prepare($sessionsQuery);
+$statement->bindParam('team_id', $team_id);
+$statement->execute();
+
+$sessions = $statement->fetchAll();
+
 require 'views/team.view.php';
