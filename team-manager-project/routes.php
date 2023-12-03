@@ -8,6 +8,7 @@
     '/team' => 'controllers/team.php',
     '/create-team' => 'controllers/create-team.php',
     '/edit-team' => 'controllers/edit-team.php',
+    '/delete-team' => 'controllers/delete-team.php',
     '/player' => 'controllers/player.php',
     '/create-player' => 'controllers/create-player.php',
     '/edit-player' => 'controllers/edit-player.php',
