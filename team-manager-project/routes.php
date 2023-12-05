@@ -13,4 +13,8 @@
     '/create-player' => 'controllers/create-player.php',
     '/edit-player' => 'controllers/edit-player.php',
     '/delete-player' => 'controllers/delete-player.php',
+    '/sessions' => 'controllers/sessions/index.php',
+    '/sessions/create' => 'controllers/sessions/create.php',
+    '/sessions/update' => 'controllers/sessions/update.php',
+    '/sessions/delete' => 'controllers/sessions/delete.php',
   ];
