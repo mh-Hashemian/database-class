@@ -185,20 +185,21 @@
 </main>
 
 <script>
-  const inputValue = $("#teamName").val();
+  const nameInput = $("#teamName");
+  const inputValue = nameInput.val();
 
-  $("#teamName").keyup(function(e) {
+  nameInput.on("keyup", function(e) {
     const currentValue = e.target.value;
     
     if (inputValue !== currentValue && currentValue !== "") {
       $("#editTeamBtn").removeAttr('disabled')
     } else {
-      $("#editTeamBtn").attr('disabled', true)
+      $("#editTeamBtn").attr('disabled', 1)
     }
   })
 
   let sessionId;
-  $(".delete-session-btn").click(function(e) {
+  $(".delete-session-btn").on("click", function(e) {
     sessionId = e.currentTarget.dataset.sessionId;
     const { sessionTitle } = e.currentTarget.dataset;
 
@@ -207,12 +208,12 @@
     `)
   })
 
-  $("#deleteSession").click(function() {
+  $("#deleteSession").on("click", function() {
     $.ajax({
       url: '/sessions/delete',
       type: 'DELETE',
       data: JSON.stringify({ session_id: sessionId }),
-      success: function(response) {
+      success: function() {
         location.reload();
       }
     })

@@ -12,4 +12,16 @@
 
       $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
+
+    public function get($query, $params) {
+      $statement = $this->connection->prepare($query);
+      
+      // binding parameters
+      foreach($params as $paramKey => $paramValue) {
+        $statement->bindValue($paramKey, $paramValue);
+      }
+
+      $statement->execute();
+      return $statement->fetchAll();
+    }
   }

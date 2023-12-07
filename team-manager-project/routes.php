@@ -10,6 +10,7 @@
     '/edit-team' => 'controllers/edit-team.php',
     '/delete-team' => 'controllers/delete-team.php',
     '/player' => 'controllers/player.php',
+    '/players' => 'controllers/players/index.php',
     '/create-player' => 'controllers/create-player.php',
     '/edit-player' => 'controllers/edit-player.php',
     '/delete-player' => 'controllers/delete-player.php',
@@ -17,4 +18,5 @@
     '/sessions/create' => 'controllers/sessions/create.php',
     '/sessions/update' => 'controllers/sessions/update.php',
     '/sessions/delete' => 'controllers/sessions/delete.php',
+    '/sessions/present-players' => 'controllers/sessions/present-players.php',
   ];
