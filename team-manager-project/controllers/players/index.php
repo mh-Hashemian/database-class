@@ -12,7 +12,7 @@ $statement->execute();
 
 $player = $statement->fetch();
 
-view("players/index.view.php", [
+view("player.view.php", [
   'player' => $player,
   'player_id' => $player_id
 ]);

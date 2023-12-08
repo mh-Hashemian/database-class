@@ -32,7 +32,7 @@ $absence_players_query = "
   )
 ";
 $absence_players = $db->get($absence_players_query, [':team_id' => $session['team_id'], ':session_id' => $session_id]);
-view("sessions/index.view.php", [
+view("session.view.php", [
   'session_id' => $session_id,
   'session' => $session,
   'present_players' => $present_players,

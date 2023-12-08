@@ -34,7 +34,7 @@ $statement->execute();
 
 $sessions = $statement->fetchAll();
 
-view('teams/index.view.php', [
+view('team.view.php', [
   'team' => $team,
   'players' => $players,
   'sessions' => $sessions,
