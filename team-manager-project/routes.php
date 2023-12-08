@@ -18,5 +18,5 @@
     '/sessions/create' => 'controllers/sessions/create.php',
     '/sessions/update' => 'controllers/sessions/update.php',
     '/sessions/delete' => 'controllers/sessions/delete.php',
-    '/sessions/present-players' => 'controllers/sessions/present-players.php',
+    '/attendance' => 'controllers/attendance/index.php',
   ];

@@ -81,7 +81,11 @@
                 <td class="align-middle">
                     <div class="d-flex flex-lg-row flex-column gap-1 align-middle h-100">
                         <a class="btn btn-success btn-sm w-100" href="/player?id=<?= $present_player['id']?>">پرداخت</a>
-                        <button type="submit" class="btn btn-danger btn-sm w-100">حذف</button>
+                        <button
+                            onclick="removeAttendance(<?= $present_player['id'] ?>)"
+                            type="submit"
+                            class="btn btn-danger btn-sm w-100"
+                        >حذف</button>
                     </div>
                 </td>
             </tr>
@@ -186,13 +190,28 @@
   })
 
   $("#savePresentPlayers").on("click", function () {
-    $.post('/sessions/present-players', {
+    $.post('/attendance', {
       player_ids: presentPlayersIDs,
       session_id: <?= $session['id'] ?>
     }, function () {
       location.reload();
     })
   })
+
+  function removeAttendance(playerId) {
+    $.ajax({
+      url: "/attendance",
+      type: "DELETE",
+      contentType: "application/json",
+      data: JSON.stringify({
+        player_id: playerId,
+        session_id: <?= $session_id ?>
+      }),
+      success: function() {
+        location.reload()
+      }
+    })
+  }
 
   const titleInput = $("#title")
   const titleValue = titleInput.val();
