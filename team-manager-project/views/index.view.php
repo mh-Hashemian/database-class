@@ -13,7 +13,7 @@
         style="cursor: pointer;"
       >
         
-        <img class="" width="48" src="views/images/plus.svg" alt="افزودن">
+        <img class="" width="48" src="images/plus.svg" alt="افزودن">
         <p >افزودن تیم</p>
       </div>
     </div>
@@ -35,13 +35,13 @@
               data-bs-toggle="modal" 
               data-bs-target="#staticBackdrop"
               width="24" 
-              src="views/images/delete.svg" 
+              src="images/delete.svg"
               alt="حذف تیم"
             >
           </div>
           <div class="card-body">
             <h5 class="card-title"><?= $team['name'] ?></h5>
-            <a href="/team?id=<?= $team['id'] ?>" class="btn btn-primary mt-3 w-100">جزئیات</a>
+            <a href="/teams?id=<?= $team['id'] ?>" class="btn btn-primary mt-3 w-100">جزئیات</a>
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form action="/create-team" method="POST">
+        <form action="/teams/create" method="POST">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">افزودن تیم</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -108,10 +108,11 @@
     if (!teamId) return;
 
     $.ajax({
-      url: `/delete-team?teamId=${teamId}`,
+      url: `/teams/delete?teamId=${teamId}`,
       type: 'DELETE',
       success: function(result) {
-        location.reload();
+        console.log(result)
+        //location.reload();
       }
     })
   })

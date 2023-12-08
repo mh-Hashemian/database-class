@@ -1,5 +1,5 @@
 <?php
-$config = require('config.php');
+$config = require base_path('config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
   $json = file_get_contents("php://input");

@@ -1,5 +1,5 @@
 <?php
-$config = require('config.php');
+$config = require base_path('config.php');
 require 'Attendance.php';
 
 $attendance = new Attendance((new Database($config['database']))->connection);

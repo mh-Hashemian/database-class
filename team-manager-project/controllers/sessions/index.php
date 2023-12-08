@@ -1,5 +1,5 @@
 <?php
-$config = require("config.php");
+$config = require base_path("config.php");
 
 $session_id = $_GET['id'];
 
@@ -32,6 +32,11 @@ $absence_players_query = "
   )
 ";
 $absence_players = $db->get($absence_players_query, [':team_id' => $session['team_id'], ':session_id' => $session_id]);
-require "views/sessions/index.view.php";
+view("sessions/index.view.php", [
+  'session_id' => $session_id,
+  'session' => $session,
+  'present_players' => $present_players,
+  'absence_players' => $absence_players
+]);
 
 

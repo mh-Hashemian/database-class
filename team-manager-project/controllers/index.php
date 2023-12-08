@@ -1,5 +1,5 @@
 <?php
-$config = require('config.php');
+$config = require base_path('config.php');
 
 if (!isset($_SESSION['user'])) {
   header("Location: /login");
@@ -19,4 +19,6 @@ $statement->execute();
 
 $teams = $statement->fetchAll();
 
-require 'views/index.view.php';
+view('index.view.php', [
+  'teams' => $teams,
+]);

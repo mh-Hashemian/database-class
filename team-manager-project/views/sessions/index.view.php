@@ -1,5 +1,5 @@
-<?php require 'views/partials/header.php' ?>
-<?php require 'views/partials/nav.php' ?>
+<?php view('partials/header.php') ?>
+<?php view('partials/nav.php') ?>
 
 <main class="container mt-3 bg-white rounded rounded-3 p-sm-5 py-4 px-2">
   <form class="mt-4 border py-3 px-4" action="/sessions/create?teamId=<?= $team['id'] ?>" method="POST">
@@ -128,7 +128,7 @@
                                         onclick="attendPlayer(event, <?= $absence_player['id'] ?>)"
                                         width=28
                                         style="cursor:pointer;"
-                                        src="views/images/check.svg"
+                                        src="images/check.svg"
                                         alt="حاضر"
                                     >
 
@@ -137,7 +137,7 @@
                                         onclick="removePlayer(event, <?= $absence_player['id'] ?>)"
                                         width=28
                                         style="cursor:pointer;"
-                                        src="views/images/x-mark.svg"
+                                        src="images/x-mark.svg"
                                         alt="حاضر"
                                     >
                                 </td>

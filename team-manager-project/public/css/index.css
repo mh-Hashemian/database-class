@@ -1,0 +1,57 @@
+@font-face {
+  font-family: vazirmatn;
+  src: url("/fonts/Vazirmatn-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: vazirmatn;
+  src: url("/fonts/Vazirmatn-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: vazirmatn;
+  src: url("/fonts/Vazirmatn-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
+* {
+  font-family: "vazirmatn" !important;
+}
+
+body {
+  background-color: #e5e7eb;
+}
+
+.form {
+  max-width: 350px;
+}
+
+ul {
+  margin-bottom: 0;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  left: 0;
+}
+
+.add-card {
+  border: 2px dashed #d1d5db;
+}
+
+.link-unstyled,
+.link-unstyled:link,
+.link-unstyled:hover {
+  color: inherit;
+  text-decoration: inherit;
+}

@@ -13,7 +13,7 @@
     </span>
  
     <div class="dropdown">
-      <img class="avatar cursor-pointer" src="views/images/user.png" alt="تصویر کاربر">
+      <img class="avatar cursor-pointer" src="images/user.png" alt="تصویر کاربر">
       
       <ul class="dropdown-menu mt-1">
         <li><a class="dropdown-item" href="#">اطلاعات کاربری</a></li>
@@ -21,7 +21,7 @@
         <li>
           <a class="dropdown-item text-danger d-flex justify-content-between" href="/logout">
             <span>خروج</span>
-            <img width="24px" src="views/images/exit.svg" alt="خارج شدن">
+            <img width="24px" src="images/exit.svg" alt="خارج شدن">
           </a>
         </li>
       </ul>

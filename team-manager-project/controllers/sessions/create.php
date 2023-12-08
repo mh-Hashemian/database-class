@@ -1,5 +1,5 @@
 <?php
-$config = require('config.php');
+$config = require base_path('config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $title = $_POST['title'];
