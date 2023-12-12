@@ -18,4 +18,5 @@
     '/sessions/update' => 'controllers/sessions/update.php',
     '/sessions/delete' => 'controllers/sessions/delete.php',
     '/attendance' => 'controllers/attendance/index.php',
+    '/transactions' => 'controllers/transactions/index.php',
   ];

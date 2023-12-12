@@ -8,7 +8,7 @@ class Attendance
   }
 
   public function add($player_ids, $session_id) {
-    $query = "INSERT INTO sessions_players (player_id, session_id) VALUES";
+    $query = "INSERT INTO attendance_transactions (player_id, session_id) VALUES";
 
     foreach ($player_ids as $player_id) {
       $is_last = end($player_ids) === $player_id;
@@ -22,7 +22,7 @@ class Attendance
   }
 
   public function remove($player_id, $session_id) {
-    $query = "DELETE FROM sessions_players WHERE player_id = :player_id AND session_id = :session_id";
+    $query = "DELETE FROM attendance_transactions WHERE player_id = :player_id AND session_id = :session_id";
     $statement = $this->db_connection->prepare($query);
     $statement->bindParam(':player_id', $player_id);
     $statement->bindParam(':session_id', $session_id);

@@ -9,7 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
   $db = new Database($config['database']);
   $query = "
     UPDATE sessions
-    SET title = :title, date = :date, entrance_fee = :entrance_fee
+    SET 
+        title = :title, 
+        date = :date, 
+        entrance_fee = :entrance_fee, 
+        ended_at = FROM_UNIXTIME(:ended_at / 1000)
     WHERE id = :id;
   ";
 
@@ -17,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
   $statement->bindParam(':title', $session['title']);
   $statement->bindParam(':date', $session['date']);
   $statement->bindParam(':entrance_fee', $session['entrance_fee']);
+  $statement->bindParam(':ended_at', $session['ended_at']);
   $statement->bindParam(':id', $session['session_id']);
 
   $statement->execute();
