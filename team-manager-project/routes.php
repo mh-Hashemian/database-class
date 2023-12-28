@@ -13,6 +13,7 @@
     '/players/create' => 'controllers/players/create.php',
     '/players/update' => 'controllers/players/update.php',
     '/players/delete' => 'controllers/players/delete.php',
+    '/players/debts' => 'controllers/players/debts.php',
     '/sessions' => 'controllers/sessions/index.php',
     '/sessions/create' => 'controllers/sessions/create.php',
     '/sessions/update' => 'controllers/sessions/update.php',

@@ -6,11 +6,11 @@
     <div class="mb-4">
         <form class="d-flex gap-2" action="/teams/update?id=<?= $team['id'] ?>" method="POST">
             <input
-                name="teamName"
-                id="teamName"
-                class="form-control"
-                type="text"
-                value="<?= $team['name'] ?>"
+                    name="teamName"
+                    id="teamName"
+                    class="form-control"
+                    type="text"
+                    value="<?= $team['name'] ?>"
             />
             <button id="editTeamBtn" disabled class="btn btn-success">ویرایش</button>
         </form>
@@ -85,6 +85,47 @@
         <div class="tab-pane fade" id="sessions" role="tabpanel" aria-labelledby="sessions-tab">
             <h4>لیست جلسات</h4>
 
+            <form class="mt-4 border py-3 px-4" action="sessions/create?teamId=<?= $team['id'] ?>" method="POST">
+                <h5 class="text-center mb-3"><b>افزودن جلسه</b></h5>
+                <div class="row">
+                    <div class="col-sm-4 mb-sm-0 mb-2">
+                        <label class="mb-1" for="title">عنوان جلسه</label>
+                        <input class="form-control" type="text" name="title" id="title" required>
+                    </div>
+                    <div class="col-sm-4 mb-sm-0 mb-2">
+                        <label class="mb-1" for="date">تاریخ جلسه</label>
+                        <input
+                                class="form-control"
+                                type="date"
+                                name="date"
+                                id="date"
+                                value="<?= date("Y-m-d"); ?>"
+                                min="<?= date("Y-m-d"); ?>"
+                                required
+                        >
+                    </div>
+                    <div class="col-sm-4 mb-sm-0 mb-2">
+                        <label class="mb-1" for="fee">هزینه ورودی</label>
+                        <div class="d-flex align-items-center gap-2">
+                            <input
+                                    class="form-control"
+                                    type="number"
+                                    name="fee"
+                                    id="fee"
+                                    min="0"
+                                    step="1000"
+                                    required
+                            >
+                            <b>تومان</b>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary w-100 mt-3">افزودن</button>
+            </form>
+
+            <hr class="my-4"/>
+
+
           <?php if (count($sessions) > 0): ?>
               <table class="table table-bordered">
                   <thead>
@@ -125,45 +166,7 @@
               <p>هیچ جلسه ای ساخته نشده است.</p>
           <?php endif; ?>
 
-            <hr class="my-4"/>
 
-            <form class="mt-4 border py-3 px-4" action="sessions/create?teamId=<?= $team['id'] ?>" method="POST">
-                <h5 class="text-center mb-3"><b>افزودن جلسه</b></h5>
-                <div class="row">
-                    <div class="col-sm-4 mb-sm-0 mb-2">
-                        <label class="mb-1" for="title">عنوان جلسه</label>
-                        <input class="form-control" type="text" name="title" id="title" required>
-                    </div>
-                    <div class="col-sm-4 mb-sm-0 mb-2">
-                        <label class="mb-1" for="date">تاریخ جلسه</label>
-                        <input
-                                class="form-control"
-                                type="date"
-                                name="date"
-                                id="date"
-                                value="<?= date("Y-m-d"); ?>"
-                                min="<?= date("Y-m-d"); ?>"
-                                required
-                        >
-                    </div>
-                    <div class="col-sm-4 mb-sm-0 mb-2">
-                        <label class="mb-1" for="fee">هزینه ورودی</label>
-                        <div class="d-flex align-items-center gap-2">
-                            <input
-                                    class="form-control"
-                                    type="number"
-                                    name="fee"
-                                    id="fee"
-                                    min="0"
-                                    step="1000"
-                                    required
-                            >
-                            <b>تومان</b>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn btn-primary w-100 mt-3">افزودن</button>
-            </form>
         </div>
         <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> -->
     </div>
@@ -182,9 +185,9 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
                     <button
-                        id="deleteSession"
-                        type="button"
-                        class="btn btn-danger"
+                            id="deleteSession"
+                            type="button"
+                            class="btn btn-danger"
                     >حذف
                     </button>
                 </div>

@@ -102,7 +102,7 @@
                       <div class="d-flex flex-lg-row flex-column gap-1 align-middle h-100">
                         <?php if ($is_session_ended): ?>
                             <button
-                                    onclick="playerId = <?= $present_player['id'] ?>"
+                                    onclick="openPaymentModal(<?= $present_player['id'] ?>)"
                                     data-player-id="<?= $present_player['id'] ?>"
                                     class="btn btn-success btn-sm w-100"
                                     data-bs-toggle="modal"
@@ -140,9 +140,9 @@
           <b><?= $formatter->format(date_create($session['date'])) ?></b>
           برگزار شد.
       </p>
-        <p class="alert alert-info h4">
-            مبلغ <b><?= convertToPersianNumber($collected_amount) ?> تومان</b> جمع آوری شد.
-        </p>
+      <p class="alert alert-info h4">
+          مبلغ <b><?= convertToPersianNumber($collected_amount) ?> تومان</b> جمع آوری شد.
+      </p>
   <?php endif; ?>
 
 
@@ -169,11 +169,12 @@
                       <td><?= convertToPersianNumber($debtor['amount_owed']) ?></td>
                       <td>
                           <button
-                              data-bs-toggle="modal"
-                              data-bs-target="#payDebtModal"
-                              onclick="openPayDebtModal(<?= $debtor['id'] ?>, <?= $debtor['amount_owed'] ?>)"
-                              class="btn btn-outline-success"
-                          >پرداخت بدهی</button>
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#payDebtModal"
+                                  onclick="openPayDebtModal(<?= $debtor['id'] ?>, <?= $debtor['amount_owed'] ?>)"
+                                  class="btn btn-outline-success"
+                          >پرداخت بدهی
+                          </button>
                       </td>
                   </tr>
               <?php endforeach; ?>
@@ -275,6 +276,24 @@
                     <label for="">مبلغ پرداختی</label>
                     <input id="payment-amount" value="<?= $session['entrance_fee'] ?>" type="number" min="1000"
                            max="<?= $session['entrance_fee'] ?>" step="1000" class="form-control">
+
+                    <div id="paymentModalTable" class="mt-2">
+                        <h5>بدهی های پیشین</h5>
+
+                        <table class="table table-bordered align-middle text-center">
+                            <thead>
+                            <tr>
+                                <th>عنوان جلسه</th>
+                                <th>تاریخ برگزاری</th>
+                                <th>مبلغ بدهی</th>
+                                <th>عملیات</th>
+                            </tr>
+                            </thead>
+                            <tbody id="paymentModalDebts">
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button onclick="closePayment()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -296,11 +315,11 @@
                 <div class="modal-body">
                     <label for="">مبلغ پرداختی</label>
                     <input
-                        id="pay-debt-amount"
-                        type="number"
-                        min="1000"
-                        step="1000"
-                        class="form-control"
+                            id="pay-debt-amount"
+                            type="number"
+                            min="1000"
+                            step="1000"
+                            class="form-control"
                     >
                 </div>
                 <div class="modal-footer">
@@ -371,8 +390,59 @@
   const entranceFee = +"<?= $session['entrance_fee'] ?>"
   let playerId
 
-  function pay() {
-    const amountPaid = +$("#payment-amount").val();
+  async function getPlayerDebts(playerId) {
+    let debts
+    await $.ajax({
+      url: '/players/debts?playerId=' + playerId,
+      type: 'GET',
+    }).done(function (res) {
+      debts = JSON.parse(res)
+    })
+
+    return debts
+  }
+
+  async function openPaymentModal(playerID) {
+    playerId = playerID
+    const debts = await getPlayerDebts(playerID)
+
+    const debtsTable = $("#paymentModalTable")
+    if (debts.length === 0) {
+      debtsTable.hide();
+      return
+    }
+
+    debtsTable.show()
+
+    const debtsTemplate = debts.map(debt => {
+      const {title, date: sessionDate, entrance_fee, amount_owed, session_id} = debt
+      const date = new Intl.DateTimeFormat('fa-IR').format(new Date(sessionDate))
+
+      return `
+        <tr>
+            <td>${title}</td>
+            <td>${date}</td>
+            <td>${amount_owed.toLocaleString('fa-IR')}</td>
+            <td>
+                <button
+                    onclick="createTransaction({
+                              player_id: ${playerID},
+                              session_id: ${session_id},
+                              amount_paid: ${entrance_fee},
+                              amount_owed: 0,
+                            })"
+                        class="btn btn-outline-success"
+                >پرداخت بدهی
+                </button>
+            </td>
+        </tr>
+      `
+    })
+
+    $("#paymentModalDebts").html(debtsTemplate)
+  }
+
+  function pay(amountPaid = +$("#payment-amount").val()) {
     const amountOwed = entranceFee - amountPaid
 
     createTransaction({
@@ -385,7 +455,11 @@
 
   let debtAmount
   payDebtInput = $("#pay-debt-amount")
-  function openPayDebtModal(debtorId, amount) {
+
+  async function openPayDebtModal(debtorId, amount) {
+    const debts = await getPlayerDebts(debtorId)
+    console.log(debts)
+
     playerId = debtorId
     debtAmount = amount
     payDebtInput.attr('value', debtAmount)

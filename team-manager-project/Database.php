@@ -13,7 +13,7 @@
       $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function get($query, $params) {
+    public function get($query, $params = []) {
       $statement = $this->connection->prepare($query);
       
       // binding parameters
