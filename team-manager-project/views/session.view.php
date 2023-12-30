@@ -166,7 +166,7 @@
               <?php foreach ($debtors as $debtor): ?>
                   <tr>
                       <td><?= $debtor['name'] ?></td>
-                      <td><?= convertToPersianNumber($debtor['amount_owed']) ?></td>
+                      <td><?= convertToPersianNumber($debtor['amount_owed']) ?> <b>تومان</b></td>
                       <td>
                           <button
                                   data-bs-toggle="modal"
@@ -381,12 +381,6 @@
     $("#payment-amount").val("<?= $session['entrance_fee'] ?>")
   }
 
-  function createTransaction(data) {
-    $.post("/transactions", data, function () {
-      location.reload()
-    })
-  }
-
   const entranceFee = +"<?= $session['entrance_fee'] ?>"
   let playerId
 
@@ -422,7 +416,7 @@
         <tr>
             <td>${title}</td>
             <td>${date}</td>
-            <td>${amount_owed.toLocaleString('fa-IR')}</td>
+            <td>${amount_owed.toLocaleString('fa-IR')} <b>تومان</b></td>
             <td>
                 <button
                     onclick="createTransaction({
@@ -457,9 +451,6 @@
   payDebtInput = $("#pay-debt-amount")
 
   async function openPayDebtModal(debtorId, amount) {
-    const debts = await getPlayerDebts(debtorId)
-    console.log(debts)
-
     playerId = debtorId
     debtAmount = amount
     payDebtInput.attr('value', debtAmount)

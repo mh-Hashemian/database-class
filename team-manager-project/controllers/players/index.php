@@ -13,14 +13,14 @@ $statement->execute();
 $player = $statement->fetch();
 
 $debts_query = "
-  SELECT title, date, amount_owed FROM attendance_transactions at
-  JOIN sessions s ON s.id = at.session_id
-  WHERE player_id = $player_id AND amount_owed > 0
-";
-$player_debts = $db->get($debts_query);
-var_dump($player_debts);
+    SELECT s.id AS session_id, title, date, entrance_fee, amount_owed FROM attendance_transactions at
+    JOIN sessions s ON s.id = at.session_id
+    WHERE player_id = :player_id AND amount_owed > 0
+  ";
+$player_debts = $db->get($debts_query, ['player_id' => $player_id]);
 
 view("player.view.php", [
   'player' => $player,
-  'player_id' => $player_id
+  'player_id' => $player_id,
+  'player_debts' => $player_debts
 ]);
