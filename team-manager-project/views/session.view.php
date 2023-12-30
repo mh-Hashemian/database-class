@@ -273,7 +273,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <label for="">مبلغ پرداختی</label>
+                    <label for="payment-amount">مبلغ پرداختی</label>
                     <input id="payment-amount" value="<?= $session['entrance_fee'] ?>" type="number" min="1000"
                            max="<?= $session['entrance_fee'] ?>" step="1000" class="form-control">
 
@@ -313,7 +313,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <label for="">مبلغ پرداختی</label>
+                    <label for="pay-debt-amount">مبلغ پرداختی</label>
                     <input
                             id="pay-debt-amount"
                             type="number"

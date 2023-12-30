@@ -1,4 +1,5 @@
 <?php
+require base_path('/controllers/auth.middleware.php');
 $config = require base_path("config.php");
 
 $session_id = $_GET['id'];

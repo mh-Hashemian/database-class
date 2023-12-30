@@ -1,10 +1,6 @@
 <?php
+require base_path('/controllers/auth.middleware.php');
 $config = require base_path('config.php');
-
-if (!isset($_SESSION['user'])) {
-  header("Location: /login");
-  exit();
-}
 
 $db = new Database($config['database']);
 $query = "
