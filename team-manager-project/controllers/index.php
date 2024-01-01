@@ -2,6 +2,7 @@
 require base_path('/controllers/auth.middleware.php');
 $config = require base_path('config.php');
 
+addBreadcrumb('صفحه اصلی', '/');
 $db = new Database($config['database']);
 $query = "
   SELECT t.*, COUNT(p.id) as players_count FROM teams t

@@ -24,4 +24,16 @@
       $statement->execute();
       return $statement->fetchAll();
     }
+
+    public function getTeamName($team_id)
+    {
+      $query = "
+        SELECT name FROM teams WHERE id = :team_id
+      ";
+      $statement = $this->connection->prepare($query);
+      $statement->bindParam('team_id', $team_id);
+      $statement->execute();
+
+      return $statement->fetch()['name'];
+    }
   }

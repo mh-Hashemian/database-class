@@ -59,6 +59,11 @@ $formatter = new IntlDateFormatter(
   "yyyy/MM/dd");
 $formatter->setPattern("dd MMMM yyyy");
 
+$team_name = $db->getTeamName($session['team_id']);
+
+addBreadcrumb('صفحه اصلی', '/');
+addBreadcrumb($team_name, '/teams?id=' . $session['team_id']);
+addBreadcrumb($session['title'], '/sessions?id=' . $session_id);
 view("session.view.php", [
   'session_id' => $session_id,
   'session' => $session,

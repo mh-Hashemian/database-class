@@ -1,4 +1,5 @@
 <?php
+require 'breadcrumb.php';
 
 function redirect($url)
 {
@@ -38,3 +39,4 @@ function formatDate($date) {
   global $formatter;
   return $formatter->format(date_create($date));
 }
+

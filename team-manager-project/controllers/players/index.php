@@ -20,6 +20,11 @@ $debts_query = "
   ";
 $player_debts = $db->get($debts_query, ['player_id' => $player_id]);
 
+$team_name = $db->getTeamName($player['team_id']);
+
+addBreadcrumb('صفحه اصلی', '/');
+addBreadcrumb($team_name, '/teams?id=' . $player['team_id']);
+addBreadcrumb($player['first_name'] . ' ' . $player['last_name'], '/players?id=' . $player_id);
 view("player.view.php", [
   'player' => $player,
   'player_id' => $player_id,

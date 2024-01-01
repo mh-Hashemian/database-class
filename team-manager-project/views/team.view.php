@@ -18,21 +18,24 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="players-tab" data-bs-toggle="tab" data-bs-target="#players"
+            <button class="nav-link" id="players-tab" data-bs-toggle="tab" data-bs-target="#players"
                     type="button" role="tab" aria-controls="home" aria-selected="true">لیست بازیکنان
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="sessions-tab" data-bs-toggle="tab" data-bs-target="#sessions" type="button"
+            <button class="nav-link active" id="sessions-tab" data-bs-toggle="tab" data-bs-target="#sessions"
+                    type="button"
                     role="tab" aria-controls="profile" aria-selected="false">لیست جلسات
             </button>
         </li>
-        <!-- <li class="nav-item" role="presentation">
-          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
-        </li> -->
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports" type="button"
+                    role="tab" aria-controls="reports" aria-selected="false">گزارشات
+            </button>
+        </li>
     </ul>
     <div class="tab-content py-3" id="myTabContent">
-        <div class="tab-pane fade show active" id="players" role="tabpanel" aria-labelledby="players-tab">
+        <div class="tab-pane fade" id="players" role="tabpanel" aria-labelledby="players-tab">
             <h4>لیست بازیکنان</h4>
             <table class="table table-bordered">
                 <thead>
@@ -168,7 +171,11 @@
 
 
         </div>
-        <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> -->
+
+        <div class="tab-pane fade show active" id="reports" role="tabpanel" aria-labelledby="reports-tab">
+            <!--            <h4>گزارش ماهانه</h4>-->
+            <canvas id="paymentsChart"></canvas>
+        </div>
     </div>
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -198,6 +205,51 @@
 </main>
 
 <script>
+  const activeTabId = localStorage.getItem('activeTabId') ?? 'reports-tab'
+  const navLinks = $(".nav-link")
+  navLinks.each(function (i, link) {
+    link.onclick = function (e) {
+      localStorage.setItem('activeTabId', e.target.id)
+    }
+    if (this.id === activeTabId) {
+      this.classList.add('active')
+      $(".tab-pane").each(function (i, pane) {
+        if (link.dataset['bsTarget'] === '#' + pane.id) {
+          pane.classList.add('show', 'active')
+          return
+        }
+        pane.classList.remove('show', 'active')
+      })
+      return
+    }
+    this.classList.remove('active')
+  })
+
+  const paymentsJson = '<?= $payments_per_date ?>'
+  const paymentsPerDate = JSON.parse(paymentsJson)
+  const xValues = [];
+  const yValues = [];
+  for (const _p of paymentsPerDate) {
+    xValues.push(_p.date)
+    yValues.push(+_p.amount_paid)
+  }
+
+  new Chart("paymentsChart", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: "rgba(0,0,255,1)",
+        borderColor: "rgba(0,0,255,0.1)",
+        label: 'مبلغ جمع آوری شده',
+        font: 'Vazirmatn',
+        data: yValues
+      }]
+    },
+    options: chartOptions
+  });
+  Chart.defaults.font.family = "Vazirmatn"
+
   $(document).ready(function () {
     $("input[name='firstName']").trigger("focus")
   })
