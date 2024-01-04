@@ -1,4 +1,3 @@
-<?php view("partials/header.php") ?>
 <?php view("partials/nav.php") ?>
 
 <main class="container mt-3 bg-white rounded rounded-3 p-sm-5 py-4 px-2">

@@ -11,7 +11,7 @@ $query = "
   GROUP BY t.id;
 ";
 $statement = $db->connection->prepare($query);
-$statement->bindParam('user_id', $_SESSION['user']['user_id']);
+$statement->bindParam('user_id', $_SESSION['user']['id']);
 $statement->execute();
 
 $teams = $statement->fetchAll();

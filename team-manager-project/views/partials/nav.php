@@ -14,7 +14,7 @@
                 <img class="avatar cursor-pointer" src="images/user.png" alt="تصویر کاربر">
 
                 <ul class="dropdown-menu mt-1">
-                    <li><a class="dropdown-item" href="#">اطلاعات کاربری</a></li>
+                    <li><a class="dropdown-item" href="/profile">اطلاعات کاربری</a></li>
                     <div class="dropdown-divider"></div>
                     <li>
                         <a class="dropdown-item text-danger d-flex justify-content-between" href="/logout">

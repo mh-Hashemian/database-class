@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
   $statement = $db->connection->prepare($query);
   $statement->bindParam('name', $team_name);
-  $statement->bindParam('user_id', $_SESSION['user']['user_id']);
+  $statement->bindParam('user_id', $_SESSION['user']['id']);
   $statement->execute();
 
   $team_id = $db->connection->lastInsertId();
