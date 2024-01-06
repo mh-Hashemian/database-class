@@ -9,7 +9,7 @@
     '/users/update' => 'controllers/users/update.php',
     '/teams' => 'controllers/teams/index.php',
     '/teams/create' => 'controllers/teams/create.php',
-    '/teams/update' => 'controllers/teams/profile.php',
+    '/teams/update' => 'controllers/teams/update.php',
     '/teams/delete' => 'controllers/teams/delete.php',
     '/players' => 'controllers/players/index.php',
     '/players/create' => 'controllers/players/create.php',
