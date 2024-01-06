@@ -281,9 +281,8 @@
       url: '/sessions/delete',
       type: 'DELETE',
       data: JSON.stringify({session_id: sessionId}),
-      success: function (r) {
-        console.log(r)
-        //location.reload();
+      success: function () {
+        location.reload();
       }
     })
   })

@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $errors[] = "مشکلی رخ داد!";
         else {
           $_SESSION['user'] = [
-            'user_id' => $user_id,
+            'id' => $user_id,
             'first_name' => $first_name,
             'last_name' => $last_name,
             'email' => $email

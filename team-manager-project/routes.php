@@ -13,7 +13,7 @@
     '/teams/delete' => 'controllers/teams/delete.php',
     '/players' => 'controllers/players/index.php',
     '/players/create' => 'controllers/players/create.php',
-    '/players/update' => 'controllers/players/profile.php',
+    '/players/update' => 'controllers/players/update.php',
     '/players/delete' => 'controllers/players/delete.php',
     '/players/debts' => 'controllers/players/debts.php',
     '/sessions' => 'controllers/sessions/index.php',

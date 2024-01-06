@@ -14,7 +14,7 @@ $statement->execute();
 
 $team = $statement->fetch();
 
-$playersQuery = "SELECT * FROM players WHERE team_id = :team_id";
+$playersQuery = "SELECT * FROM players WHERE team_id = :team_id AND is_active = TRUE ORDER BY first_name";
 $statement = $db->connection->prepare($playersQuery);
 $statement->bindParam('team_id', $team_id);
 $statement->execute();

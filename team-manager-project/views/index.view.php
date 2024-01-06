@@ -23,7 +23,7 @@
         <div class="card px-0">
           <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0 h6">
-              تعداد بازیکنان: <?= $team['players_count'] ?>
+              تعداد بازیکنان فعال: <?= $team['players_count'] ?>
             </h5>
 
             <img 
@@ -109,9 +109,8 @@
     $.ajax({
       url: `/teams/delete?teamId=${teamId}`,
       type: 'DELETE',
-      success: function(result) {
-        console.log(result)
-        //location.reload();
+      success: function() {
+        location.reload();
       }
     })
   })

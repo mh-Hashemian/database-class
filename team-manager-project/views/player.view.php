@@ -168,7 +168,7 @@
       playerId: <?= $player_id ?>,
       firstname: $("#playerFirstname").val(),
       lastname: $("#playerLastname").val(),
-    }, function (data, status) {
+    }, function () {
       location.reload();
     })
   })

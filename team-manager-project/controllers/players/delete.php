@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $db = new Database($config['database']);
   
   $query = "
-    DELETE FROM players WHERE id = :player_id
+    UPDATE players SET is_active = FALSE WHERE id = :player_id
   ";
 
   $statement = $db->connection->prepare($query);

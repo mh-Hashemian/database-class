@@ -21,16 +21,19 @@ $players = $db->get($players_query, [
 $present_players_query = "
   SELECT p.* FROM attendance_transactions at
   JOIN `players` p ON p.id = at.player_id
-  WHERE session_id = :session_id AND amount_paid IS NULL;
+  WHERE session_id = :session_id AND is_active = TRUE
+    AND amount_paid IS NULL
+  ORDER BY first_name;
 ";
 $present_players = $db->get($present_players_query, ['session_id' => $session_id]);
 
 $absence_players_query = "
   SELECT * FROM players
-  WHERE team_id = :team_id AND id NOT IN (
+  WHERE team_id = :team_id AND is_active = TRUE AND id NOT IN (
     SELECT player_id FROM attendance_transactions
       WHERE session_id = :session_id
   )
+  ORDER BY first_name
 ";
 $absence_players = $db->get($absence_players_query, [':team_id' => $session['team_id'], ':session_id' => $session_id]);
 $is_session_ended = isset($session['ended_at']);
