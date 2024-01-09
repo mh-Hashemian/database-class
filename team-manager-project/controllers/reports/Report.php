@@ -32,7 +32,7 @@ class Report extends Database
     }, $totalIncome);
   }
 
-  public function topActivePlayers($teamId, $count) {
+  public function topActivePlayers($teamId, $count = 3) {
     $query = "
       with rankedPlayers as (
         select count(p.id) as presence_count,
@@ -42,6 +42,7 @@ class Report extends Database
         join attendance_transactions at on at.player_id = p.id
         join sessions s on s.id = at.session_id
         where p.team_id = :team_id and s.ended_at is not null
+        and MONTH(CURDATE()) = MONTH(s.date)
         group by p.id
         order by presence_count desc
       )
@@ -64,6 +65,7 @@ class Report extends Database
             from sessions s
             join attendance_transactions at on s.id = at.session_id
             where team_id = :team_id and ended_at is not null
+            and MONTH(CURDATE()) = MONTH(s.date)
             group by session_id
         ) T
     ";
@@ -84,6 +86,7 @@ class Report extends Database
             from sessions s
             join attendance_transactions at on s.id = at.session_id
             where team_id = :team_id and ended_at is not null
+            and MONTH(CURDATE()) = MONTH(s.date)
             group by session_id
         ) T
     ";

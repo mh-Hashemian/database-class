@@ -173,6 +173,7 @@
 
         <div class="tab-pane fade show active" id="reports" role="tabpanel" aria-labelledby="reports-tab">
             <!--            <h4>گزارش ماهانه</h4>-->
+            <div class="alert alert-warning">تمامی گزارشات ارائه شده مربوط به ماه جاری هستند.</div>
             <h4>تراز مالی</h4>
             <table class="table table-bordered">
                 <thead>
@@ -183,8 +184,8 @@
                 </thead>
                 <tbody>
                     <tr class="text-center">
-                        <td><b><?= convertToPersianNumber($financialBalance['total_team_income']) ?></b> تومان</td>
-                        <td><b><?= convertToPersianNumber($financialBalance['total_players_debts']) ?></b> تومان</td>
+                        <td><b><?= $financialBalance['total_team_income'] > 0 ? convertToPersianNumber($financialBalance['total_team_income']) : convertToPersianNumber(0) ?></b> تومان</td>
+                        <td><b><?= $financialBalance['total_team_income'] > 0 ? convertToPersianNumber($financialBalance['total_players_debts']) : convertToPersianNumber(0) ?></b> تومان</td>
                     </tr>
                 </tbody>
             </table>
@@ -202,7 +203,7 @@
                 <tbody>
                 <tr class="text-center">
                     <td><b><?= convertToPersianNumber($averageIncomePerSession['sessions_count']) ?></b></td>
-                    <td><b><?= convertToPersianNumber($averageIncomePerSession['average_amount_per_session']) ?></b> تومان</td>
+                    <td><b><?= $averageIncomePerSession['average_amount_per_session'] > 0 ? convertToPersianNumber($averageIncomePerSession['average_amount_per_session']) : convertToPersianNumber(0) ?></b> تومان</td>
                 </tr>
                 </tbody>
             </table>
