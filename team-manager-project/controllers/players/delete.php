@@ -14,5 +14,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $statement->bindParam('player_id', $player_id);
   $statement->execute();
 
-  header('Location: /teams?id=' . $team_id);
+  header('Location: /teams?&id=' . $team_id);
 }

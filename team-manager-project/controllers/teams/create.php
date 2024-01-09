@@ -19,5 +19,5 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
   $team_id = $db->connection->lastInsertId();
 
-  header("Location: /teams?id=" . $team_id);
+  header("Location: /teams?&id=" . $team_id);
 }

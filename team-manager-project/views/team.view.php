@@ -36,7 +36,7 @@
     <div class="tab-content py-3" id="myTabContent">
         <div class="tab-pane fade" id="players" role="tabpanel" aria-labelledby="players-tab">
             <h4>لیست بازیکنان</h4>
-            <table class="table table-bordered">
+            <table class="table table-bordered mt-4">
                 <thead>
                 <tr class="text-center">
                     <th>شناسه</th>
@@ -173,7 +173,96 @@
 
         <div class="tab-pane fade show active" id="reports" role="tabpanel" aria-labelledby="reports-tab">
             <!--            <h4>گزارش ماهانه</h4>-->
+            <h4>تراز مالی</h4>
+            <table class="table table-bordered">
+                <thead>
+                <tr class="text-center">
+                    <th>درآمد تیم</th>
+                    <th>مبلغ بستانکاری</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center">
+                        <td><b><?= convertToPersianNumber($financialBalance['total_team_income']) ?></b> تومان</td>
+                        <td><b><?= convertToPersianNumber($financialBalance['total_players_debts']) ?></b> تومان</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr class="my-4">
+
+            <h4 class="mt-4">میانگین درآمد در هر جلسه</h4>
+            <table class="table table-bordered">
+                <thead>
+                <tr class="text-center">
+                    <th>تعداد جلسات برگزار شده</th>
+                    <th>میانگین درآمد به ازای هر جلسه</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="text-center">
+                    <td><b><?= convertToPersianNumber($averageIncomePerSession['sessions_count']) ?></b></td>
+                    <td><b><?= convertToPersianNumber($averageIncomePerSession['average_amount_per_session']) ?></b> تومان</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <hr class="my-4">
+
+            <h4 class="mt-4">گزارش درآمد</h4>
+            <div x-data="date()" class="d-flex align-items-center mt-3 px-2">
+                <span>از</span>
+                <input
+                        x-ref="fromDateInput"
+                        x-model="dates.fromDate"
+                        class="form-control mx-3"
+                        type="date"
+                />
+                <span>تا</span>
+                <input
+                        x-ref="toDateInput"
+                        x-model="dates.toDate"
+                        class="form-control ms-3"
+                        type="date"
+                />
+                <button @click="setUrl" class="btn btn-primary ms-2">گزارش</button>
+            </div>
+
             <canvas id="paymentsChart"></canvas>
+
+            <hr class="my-4">
+
+            <?php if (count($topActivePlayers) > 0): ?>
+            <h4 class="mt-4">فعالترین بازیکنان</h4>
+            <table class="table table-bordered mt-3">
+                <thead>
+                <tr class="text-center">
+                    <th>شناسه</th>
+                    <th>نام</th>
+                    <th>نام خانوادگی</th>
+                    <th>مقام</th>
+                    <th>دفعات حضور</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($topActivePlayers as $player) : ?>
+                    <tr class="text-center align-middle">
+                        <td><b><?= $player['id'] ?></b></td>
+                        <td><?= $player['first_name'] ?></td>
+                        <td><?= $player['last_name'] ?></td>
+                        <td><?= convertToPersianNumber($player['rnk']) ?></td>
+                        <td><?= convertToPersianNumber($player['presence_count']) ?></td>
+                        <td>
+                            <div class="d-flex flex-lg-row flex-column gap-1">
+                                <a class="btn btn-success btn-sm w-100" href="/players?id=<?= $player['id'] ?>">گزارشات</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -204,6 +293,27 @@
 </main>
 
 <script>
+
+  function date() {
+    return {
+      dates: {
+        fromDate: "<?= $fromDate ?>",
+        toDate: "<?= $toDate ?>"
+      },
+      init() {
+        this.$refs.fromDateInput.max = this.dates.toDate
+        this.$refs.toDateInput.min = this.dates.fromDate
+      },
+      setUrl() {
+        const url = window.location.href
+        const urlParams = new URLSearchParams(url)
+        const teamId = urlParams.get('id')
+        newUrl = `${window.location.origin}${window.location.pathname}?&id=${teamId}&from=${this.dates.fromDate}&to=${this.dates.toDate}`
+        location.replace(newUrl)
+      }
+    }
+  }
+
   const activeTabId = localStorage.getItem('activeTabId') ?? 'reports-tab'
   const navLinks = $(".nav-link")
   navLinks.each(function (i, link) {
@@ -224,11 +334,11 @@
     this.classList.remove('active')
   })
 
-  const paymentsJson = '<?= $payments_per_date ?>'
-  const paymentsPerDate = JSON.parse(paymentsJson)
+  const paymentsJson = '<?= $incomePerSession ?>'
+  const incomePerSession = JSON.parse(paymentsJson)
   const xValues = [];
   const yValues = [];
-  for (const _p of paymentsPerDate) {
+  for (const _p of incomePerSession) {
     xValues.push(_p.date)
     yValues.push(+_p.amount_paid)
   }

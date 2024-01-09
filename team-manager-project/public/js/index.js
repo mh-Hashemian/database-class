@@ -8,7 +8,7 @@ chartOptions = {
   plugins: {
     title: {
       display: true,
-      text: 'گزارش ماهانه',
+      text: 'نمودار گزارش',
       font: {
         size: 18,
         weight: 'bold'

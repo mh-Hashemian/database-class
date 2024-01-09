@@ -40,7 +40,7 @@
           </div>
           <div class="card-body">
             <h5 class="card-title"><?= $team['name'] ?></h5>
-            <a href="/teams?id=<?= $team['id'] ?>" onclick="addBreadcrumb("سلام", "/kho")" class="btn btn-primary mt-3 w-100">جزئیات</a>
+            <a href="/teams?&id=<?= $team['id'] ?>" onclick="addBreadcrumb("سلام", "/kho")" class="btn btn-primary mt-3 w-100">جزئیات</a>
           </div>
         </div>
       </div>
